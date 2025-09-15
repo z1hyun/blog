@@ -1,3 +1,5 @@
+/* eslint-disable */
+//Lint 끄는 기능임  Lint : WARNING뜨는거
 import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
@@ -5,7 +7,8 @@ import { useState } from 'react';
 function App() {
 
   let post = '강남 우동 맛집';
-  let [글제목,b] = useState('여자 코트 추천'); 
+  let [글제목,b] = useState(['남자코트 추천','강남 우동 맛집','파이썬 독학']);
+  let [따봉,따봉변경] = useState(0); 
 
   /* [2025-09-15] 리액트에서 자료 잠깐 저장할땐 state 써도 됨.
      1.import{ useState } from 'react';
@@ -19,8 +22,14 @@ function App() {
      - 변수는 값이 바뀌어도 html 재렌더링X, state는 값이 바뀌면 재렌더링O.
      - 변동시 자동으로 html에 반영되게 하고싶으면 state사용하면 됨.
      - 자주변경될거 같은 html을 state로 만들어놓으면 됨. 
-  */
 
+
+     state 변경하는 법  
+    1. state는 절대 직접 변경 금지 = 등호 금지
+      state 선언시 state변경 함수를 써야 html 재렌더링도 잘됨
+    2. state변경함수(새로운값state)
+
+  */
   
   /* JSX언어 : JS안에서 HTML문법을 쉽게 쓸 수 있게 해주는 언어
     
@@ -31,9 +40,7 @@ function App() {
         className, id에도 {}사용가능
       4.JSX안에 style적용시 style { {스타일명:'값'} } 이런식으로 object형태로 넣어야함
         카멜표기법으로 작성해야함 (background-color -> backgroundColor)
-
-      //기존 js문법 : documnet.querySelector('h4').innerHTML = 'post'
-
+  
   */
   
   //return()안에는 병렬로 태그 2개이상 기입금지.
@@ -43,7 +50,15 @@ function App() {
         <h4>ReactBlog</h4>
       </div>  
       <div className="list">  
-        <h4>{글제목}</h4>
+        <h4> { 글제목[0] } <span onClick={()=>{ 따봉변경(따봉+1) }} >👍</span> {따봉} </h4>
+        <p>2월 17일 발행</p>
+      </div>
+      <div className="list">  
+        <h4> { 글제목[1] } </h4>
+        <p>2월 17일 발행</p>
+      </div>
+      <div className="list">  
+        <h4> { 글제목[2] } </h4>
         <p>2월 17일 발행</p>
       </div>
     </div>
